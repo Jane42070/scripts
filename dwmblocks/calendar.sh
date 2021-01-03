@@ -1,3 +1,2 @@
 #!/bin/bash
-date=`date "+%m-%d %H:%M"`
-echo $date
+echo $(date "+%m-%d %H:%M")
