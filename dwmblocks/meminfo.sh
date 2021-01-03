@@ -1,2 +1,2 @@
 #!/bin/bash
-free -h | awk 'NR==2 {printf("%dMB", $3)}'
+echo Mem.$(free -h | awk 'NR==2 {print $3}')
