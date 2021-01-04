@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ln -s pwd/pppoe /usr/local/bin
+ln -s pwd/change_commit /usr/local/bin
+ln -s pwd/prompt /usr/local/bin
