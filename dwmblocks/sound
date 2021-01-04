@@ -1,0 +1,11 @@
+#!/bin/bash
+voice=`amixer get Master | awk 'NR==5{print $4}'`
+if [[ $voice == 0 ]]; then
+	echo 🔇${voice}
+elif [[ $voice < 40 ]]; then
+	echo 🔈${voice}
+elif [[ $voice < 70 ]]; then
+	echo 🔉${voice}
+else
+	echo 🔊${voice}
+fi
