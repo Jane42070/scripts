@@ -1,0 +1,6 @@
+#!/bin/sh
+package=`pacman -Qu | wc -l`
+case $1 in
+	1) package=`pacman -Qu | wc -l`;;
+esac
+echo 📦$package
