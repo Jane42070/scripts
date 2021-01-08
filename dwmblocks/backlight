@@ -1,2 +1,2 @@
 #!/bin/bash
-echo 🖥 $(xbacklight -get)
+echo 🖥$(xbacklight -get)

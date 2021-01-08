@@ -1,2 +1,2 @@
 #!/bin/bash
-echo 💾 $(df -h | awk '{if($1=="/dev/nvme0n1p3") print $5}')
+echo 💾$(df -h | awk '{if($1=="/dev/nvme0n1p3") print $5}')
