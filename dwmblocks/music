@@ -1,0 +1,4 @@
+#!/bin/sh
+# 🎵
+song=`mpc --port='6666' | awk 'NR==1'`
+echo 🎶$song
