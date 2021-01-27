@@ -1,5 +1,5 @@
 #!/bin/bash
-voice=`amixer get Master | awk 'NR==5{print $4}'`
+voice=`pulsemixer --get-volume | awk '{print $1}'`
 if [[ $voice == 0 ]]; then
 	echo 🔇${voice}
 elif [[ $voice < 40 ]]; then

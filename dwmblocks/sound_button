@@ -1,4 +1,4 @@
 #!/bin/bash
 case $1 in
-	1) exec "st" -e "alsamixer";;
+	1) exec "st" -e "pulsemixer";;
 esac
