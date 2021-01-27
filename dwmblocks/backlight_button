@@ -1,9 +1,0 @@
-#!/bin/bash
-case $1 in
-	1)
-		xbacklight -set 80;;
-	2)
-		xbacklight -inc 5;;
-	3)
-		xbacklight -dec 5;;
-esac
