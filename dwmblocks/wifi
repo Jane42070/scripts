@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo wpa_supplicant -i wlp7s0 -c /home/`whoami`/wifi.conf
