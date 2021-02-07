@@ -1,0 +1,2 @@
+#!/bin/sh
+curl "wttr.in/chongqing?format=%c%t"
