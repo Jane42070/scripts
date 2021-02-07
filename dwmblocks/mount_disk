@@ -1,0 +1,2 @@
+#!/bin/sh
+mount $(cat /proc/partitions | awk 'NR>3{print "/dev/"$4}' | dmenu -p "Which disk to mount")
