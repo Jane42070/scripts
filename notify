@@ -1,0 +1,2 @@
+#!/bin/sh
+echo $(clipctl cache-dir) | entr notify-send -t 2000 "Clipboard updated"
