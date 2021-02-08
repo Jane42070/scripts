@@ -1,2 +1,4 @@
 #!/bin/sh
-echo $(clipctl cache-dir) | entr notify-send -t 2000 "Clipboard updated"
+while clipnotify; do
+	notify-send -t 3000 "Clipboard updated"
+done
