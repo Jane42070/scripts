@@ -1,4 +1,5 @@
 #!/bin/sh
+yay -Sy
 package=`pacman -Qu | wc -l`
 case $1 in
 	1) package=`pacman -Qu | wc -l`;;

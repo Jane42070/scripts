@@ -1,2 +1,2 @@
 #!/bin/sh
-echo 🎵$(mpc --port='6666' | awk 'NR==1')
+echo 🎵$(mpc --port='6666' current)

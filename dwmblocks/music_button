@@ -1,0 +1,6 @@
+#!/bin/sh
+case $1 in
+	1) st -i -g float -e "ncmpcpp";;
+	3) st -e "nvim" "$0";;
+esac
+
