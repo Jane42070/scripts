@@ -1,10 +1,14 @@
-#!/bin/bash
-voice=`pulsemixer --get-volume | awk '{print $1}'`
-if [[ $voice == 0 ]]; then
-	echo 🔇${voice}
-elif [[ $voice < 40 ]]; then
+#!/bin/sh
+case $1 in
+	1) "st" -i -g float -e "pulsemixer" && sigdwmblocks 1 && exit;;
+	2) pamixer -t && sigdwmblocks 1 && exit;;
+	3) "st" -e "nvim" "$0";;
+esac
+[ $(pamixer --get-mute) = true ] && echo 🔇 && exit
+voice="$(pamixer --get-volume)"
+if [[ "$voice" -lt "35" ]]; then
 	echo 🔈${voice}
-elif [[ $voice < 70 ]]; then
+elif [[ "$voice" -lt "70" ]]; then
 	echo 🔉${voice}
 else
 	echo 🔊${voice}

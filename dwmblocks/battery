@@ -1,2 +1,29 @@
-#!/bin/bash
+#!/bin/sh
 echo 🔋$(cat /sys/class/power_supply/BAT0/capacity)%
+["$1" == ""] && exit
+# # 现在能量
+# read -r energy_now </sys/class/power_supply/BAT0/energy_now
+# # 满能量
+# read -r energy_full </sys/class/power_supply/BAT0/energy_full
+# val=$(( energy_full-energy_now ))
+# # 当前充电功率
+# read -r rate </sys/class/power_supply/BAT0/power_now
+# # 当前充电电压
+# read -r vol </sys/class/power_supply/BAT0/voltage_now
+# hr=$(( vol / rate))
+# echo 空载$val
+# echo 功率$rate
+# echo 电压$vol
+# echo 小时$hr
+case $1 in
+	1)
+		# 当前电量
+		read -r bat </sys/class/power_supply/BAT0/capacity
+		[ "$bat" = 100 ] && notify-send "电池已充满" && exit
+		# 是否在充电
+		read -r ac </sys/class/power_supply/ADP0/online
+		[ "$ac" = 1 ] && notify-send "已连接充电器" && exit
+		;;
+	3)
+		"st" -e "nvim" "$0";;
+esac

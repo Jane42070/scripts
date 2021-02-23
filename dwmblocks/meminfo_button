@@ -1,6 +1,0 @@
-#!/bin/sh
-case $1 in
-	1) exec "st" -i -g float -e "gotop";;
-	2) ;;
-	3) "st" -e "nvim" "$0";;
-esac

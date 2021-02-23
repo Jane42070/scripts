@@ -1,2 +1,0 @@
-#!/bin/bash
-echo 💾$(df -h | awk '{if($1=="/dev/nvme0n1p4") print $5}')

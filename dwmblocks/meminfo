@@ -11,3 +11,9 @@ elif [[ $mem < 12 ]]; then
 elif [[ $mem < 16 ]]; then
 	echo 😡${mem}G
 fi
+["$1" == ""] && exit
+case $1 in
+	1) exec "st" -i -g float -e "gotop";;
+	2) ;;
+	3) "st" -e "nvim" "$0";;
+esac

@@ -1,2 +1,11 @@
 #!/bin/sh
 curl "wttr.in/chongqing?format=%c%t"
+["$1" == ""] && exit
+case $1 in
+	1)
+		;;
+	2)
+		;;
+	3)
+		;;
+esac

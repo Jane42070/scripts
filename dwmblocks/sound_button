@@ -1,6 +1,0 @@
-#!/bin/bash
-case $1 in
-	1) "$TERMINAL" -i -g float -e "pulsemixer" && sigdwmblocks 1 && exit;;
-	2) notify-send "当前音量: $(pamixer --get-volume)";;
-	3) "st" -e "nvim" "$0";;
-esac

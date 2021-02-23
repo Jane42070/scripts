@@ -1,0 +1,7 @@
+#!/bin/bash
+echo 💾$(df -h | awk '{if($1=="/dev/nvme0n1p4") print $5}')
+["$1" == ""] && exit
+case $1 in
+	1) st -i -g float -e "lf";;
+	3) st -e "nvim" "$0";;
+esac
