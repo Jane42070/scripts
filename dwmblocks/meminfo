@@ -13,7 +13,7 @@ elif [[ $mem < 16 ]]; then
 fi
 ["$1" == ""] && exit
 case $1 in
-	1) exec "st" -i -g float -e "gotop";;
+	1) exec "st" -i -g float -e "htop" "-t";;
 	2) ;;
 	3) "st" -e "nvim" "$0";;
 esac
