@@ -1,7 +1,10 @@
 #!/bin/sh
-echo 🎵$(mpc --port='6666' current)
-["$1" == ""] && exit
 case $1 in
 	1) st -i -g float -e "ncmpcpp";;
+	2) mpc --port='6666' toggle;;
 	3) st -e "nvim" "$0";;
+	4) mpc --port='6666' prev && sigdwmblocks 2 && exit;;
+	5) notify-send "音乐帮助" "中键暂停\nCtrl + 右键 下一首\nCtrl + 左键 上一首";;
+	6) mpc --port='6666' next && sigdwmblocks 2 && exit;;
 esac
+echo 🎵$(mpc --port='6666' current)
