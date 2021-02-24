@@ -24,7 +24,7 @@ case $1 in
 	3)
 		"st" -e "nvim" "$0";;
 	4) xbacklight -inc 10;;
-	5) notify-send "🔋 Battery module" "🔋: discharging\n❗: not charging\n♻: stagnant charge\n🔌: charging\n⚡: charged\n🚨: battery very low!\nCtrl + Mbutton change adjust xbacklight." ;;
+	5) notify-send -t 0 "🔋 Battery module" "🔋: discharging\n❗: not charging\n♻: stagnant charge\n🔌: charging\n⚡: charged\n🚨: battery very low!\nCtrl + Mbutton change adjust xbacklight." ;;
 	6) xbacklight -dec 10;;
 esac
 
