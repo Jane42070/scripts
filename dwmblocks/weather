@@ -1,11 +1,10 @@
 #!/bin/sh
-curl "wttr.in/chongqing?format=%c%t"
-["$1" == ""] && exit
+pos="chongqing"
+echo $(curl -s "wttr.in/$pos?format=%c%t")
+[ "$1" == "" ] && exit
+curl -s "wttr.in/$pos" > /tmp/weather
 case $1 in
-	1)
-		;;
-	2)
-		;;
-	3)
-		;;
+	1) st -i -g 125x30 -e "bat" "--style=plain" "/tmp/weather";;
+	2) ;;
+	3) ;;
 esac

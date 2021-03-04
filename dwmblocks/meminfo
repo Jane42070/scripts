@@ -8,6 +8,7 @@ elif [[ $mem < 9 ]]; then
 	echo 😬${mem}G
 elif [[ $mem < 12 ]]; then
 	echo 😠${mem}G
+	notify-send "High memory usage"
 elif [[ $mem < 16 ]]; then
 	echo 😡${mem}G
 fi

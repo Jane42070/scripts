@@ -1,6 +1,7 @@
 DEST=/usr/local/bin/
+PWD=pwd
 
 .PHONY: install
 
 install:
-	install --target "${DEST}" -D -m755 change_commit pppoe prompt notify
+	install --target "${DEST}" -D -m755 *
