@@ -1,10 +1,18 @@
 #!/bin/sh
+case $1 in
+	1)
+		if [ ! -e "/tmp/weather" ]; then
+			curl -s "wttr.in/$pos" > /tmp/weather
+		fi
+		st -i -g 125x30 -e "bat" "--style=plain" "/tmp/weather";;
+	2) ;;
+	3) st -e "nvim" "$0";;
+	4) curl -s "wttr.in/$pos" > /tmp/weather && notify-send "Weather info updated";;
+	5) notify-send "☀ 天气" "右键：查看七天天气
+	中键: 刷新天气
+	右键: 编辑脚本
+	C+中键: 帮助" ;;
+esac
+[ "$1" != "" ] && exit
 pos="chongqing"
 echo $(curl -s "wttr.in/$pos?format=%c%t")
-[ "$1" == "" ] && exit
-curl -s "wttr.in/$pos" > /tmp/weather
-case $1 in
-	1) st -i -g 125x30 -e "bat" "--style=plain" "/tmp/weather";;
-	2) ;;
-	3) ;;
-esac
