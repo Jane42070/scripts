@@ -1,7 +1,9 @@
 #!/bin/bash
-echo 💾$(df -h | awk '{if($1=="/dev/sda1") print $5}')
+disk=`df -h | awk '{if ($6 == "/") print $1}'`
+echo 💾$(df -h | awk '{if($1=="'$disk'") print $5}')
 ["$1" == ""] && exit
 case $1 in
 	1) st -i -g float -e "lf";;
 	3) st -e "nvim" "$0";;
+	4) st -e "yay" "-Scc" && notify-send -t 1000 "成功清理缓存";;
 esac
