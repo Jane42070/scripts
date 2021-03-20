@@ -20,14 +20,6 @@
 # echo 电压$vol
 # echo 小时$hr
 
-case $1 in
-	3)
-		"st" -e "nvim" "$0";;
-	4) xbacklight -inc 10;;
-	5) notify-send -t 0 "🔋 Battery module" "🔋: discharging\n❗: not charging\n♻: stagnant charge\n🔌: charging\n⚡: charged\n🚨: battery very low!\nCtrl + Mbutton change adjust xbacklight." ;;
-	6) xbacklight -dec 10;;
-esac
-
 for battery in /sys/class/power_supply/BAT*?; do
 	case "$(cat "$battery/status")" in
 		"Full") status="⚡";;
@@ -39,4 +31,17 @@ for battery in /sys/class/power_supply/BAT*?; do
 	[ "$status" = "🔋" ] && [ "$capacity" -le 25 ] && warn="🚨"
 	bat=$(cat $battery/capacity)
 	printf "%s%s%d" "$status" "$warn" "$bat"; unset warn
-done && exit
+done
+
+[ "$1" == "" ] && exit
+
+case $1 in
+	1)
+		[ "$status" = "🔋" ] && notify-send $(acpi | awk '{print $5}')
+		;;
+	3)
+		"st" -e "nvim" "$0";;
+	4) xbacklight -inc 10;;
+	5) notify-send -t 0 "🔋 Battery module" "🔋: discharging\n❗: not charging\n♻: stagnant charge\n🔌: charging\n⚡: charged\n🚨: battery very low!\nCtrl + Mbutton change adjust xbacklight." ;;
+	6) xbacklight -dec 10;;
+esac
