@@ -9,11 +9,16 @@ case $1 in
 		st -i -g 125x30 -e "bat" "--style=plain" "/tmp/weather";;
 	2) ;;
 	3) st -e "nvim" "$0";;
-	4) curl -s "wttr.in/$pos" > /tmp/weather && notify-send "更新天气信息成功！";;
+	4) curl -s "wttr.in/$pos" > /tmp/weather && notify-send "更新天气信息成功！" && sigdwmblocks 8;;
 	5) notify-send "☀ 天气" "右键：查看七天天气
 	中键: 刷新天气
 	右键: 编辑脚本
 	C+中键: 帮助" ;;
 esac
 [ "$1" != "" ] && exit
-echo $(curl -s "wttr.in/$pos?format=%c%t")
+ret=`curl -s "wttr.in/$pos?format=%c%t" | sed 's/+//'`
+if [[ ${#ret} -lt 10 ]]; then
+	echo $ret
+else
+	notify-send "☀ 天气获取失败"
+fi

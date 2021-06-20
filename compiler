@@ -1,0 +1,15 @@
+#!/bin/sh
+file=$1
+dir=$(dirname $file)
+base=${file%.*}
+
+cd $dir || exit
+
+case $file in
+	*\.ms) groff -ms -me -kejpt -T pdf > $base.pdf;;
+	*\.tex) xelatex $file && rm *.log *.aux;;
+	*\.md) pandoc --pdf-engine=xelatex -o $base.pdf;;
+	*\.py) python $file;;
+	*\.go) go run $file;;
+	*\.c)  gcc $file -o $base && $base;;
+esac

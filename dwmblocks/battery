@@ -38,6 +38,7 @@ done
 case $1 in
 	1)
 		[ "$status" = "🔋" ] && notify-send $(acpi | awk '{print $5}')
+		[ "$status" = "🔌" ] && notify-send $(acpi | awk '{print $5}')
 		;;
 	3)
 		"st" -e "nvim" "$0";;
