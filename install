@@ -1,6 +1,0 @@
-#!/bin/bash
-path=`pwd`
-ln -sf $path/pppoe /usr/local/bin
-ln -sf $path/change_commit /usr/local/bin
-ln -sf $path/prompt /usr/local/bin
-cd /usr/local/bin && ln -sf $path/dwmblocks/* .
