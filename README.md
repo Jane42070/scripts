@@ -1,7 +1,7 @@
-# My Scripts
-## TODO
-- ~~use Makefile instead of install.sh~~
-- display screenkey status
-- display screencaptcher status
-- ~~display weather status~~
-- display disks, upgradable packages, email numbers
+# 快捷脚本
+## 说明：大部分是结合DWM的脚本
+- 里面包括了音量调节、天气、音乐显示，磁盘、内存占用率显示，时间、网络、电量显示。
+- 还有截图、截图至剪切板、关机、dmenu的选择脚本等
+## 使用方法
+- 将scripts添加到你使用的终端的环境变量
+- 或者将他们复制到bin目录下
