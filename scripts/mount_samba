@@ -1,0 +1,66 @@
+#!/bin/bash
+
+configPath="$HOME/.config/mountsamba"
+configName="$configPath/mountsambarc"
+logName="$configPath/mountsamba.log"
+
+# Read necessary values for mount.cifs mounting
+sambaPrompt() {
+	echo -e "Mount cifs samba shell script\nPlease run as root...\n"
+	read -p "input username:" user
+	read -p "input password:" pass
+	read -p "input port:" port
+	read -p "input path+folder (eg. web/folder):" path
+	read -p "input mount point:" point
+}
+
+# Mount samba disk
+folderMount() {
+	pointStr=$(eval "echo $point")
+	if [[ -f $pointStr ]]; then
+		echo -e "mount point exists\n"
+		echo $point
+		sudo mount.cifs -o user=$user,pass=$pass,port=$port //$path $pointStr
+	else
+		echo -e "mount point does not exist\n"
+		echo $point
+		mkdir -p $point && sudo mount.cifs -o user=$user,pass=$pass,port=$port //$path $pointStr
+	fi
+}
+
+# Read mount list and umount
+folderUmount() {
+	mountpoint -q /home/qilin/media/openWrt
+}
+
+# Initiate configuration files
+configInit() {
+	if [[ -d $configPath ]]; then
+		echo "config exist"
+		[[ ! -f $configName ]] || touch $configName
+		[[ ! -f $logName ]] || touch $logName
+	else
+		echo "config does not exist, generate"
+		# if not a directory, delete then recreate
+		[[ -f $configPath ]] && echo "deleting no directory config" && rm $configPath
+		mkdir -p $configPath
+		touch $configName
+		touch $logName
+		echo "config initiate finish"
+	fi
+}
+
+# Load configuration files
+configLoad() {
+	cat $configName | while read line
+	do
+		echo $line
+	done
+}
+
+# sambaPrompt
+# folderMount
+configInit
+configLoad
+
+#cd $point

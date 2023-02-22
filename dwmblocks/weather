@@ -16,7 +16,7 @@ case $1 in
 	C+中键: 帮助" ;;
 esac
 [ "$1" != "" ] && exit
-ret=`curl -s "wttr.in/$pos?format=%c%t" | sed 's/+//'`
+ret=`timeout 3s curl -s "wttr.in/$pos?format=%c%t" | sed 's/+//'`
 if [[ ${#ret} -lt 10 ]]; then
 	echo $ret
 else

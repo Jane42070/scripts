@@ -1,5 +1,5 @@
 #!/bin/sh
-feh --bg-fill --no-fehbg --randomize /home/$(whoami)/github/wallpapers/*
+feh --bg-fill --no-fehbg --randomize /home/$(whoami)/Github/wallpapers/*
 ["$1" == ""] && exit
 # case $1 in
 #     1)
