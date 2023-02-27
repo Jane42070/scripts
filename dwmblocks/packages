@@ -1,8 +1,10 @@
 #!/bin/sh
 package=`yay -Qu | wc -l`
 case $1 in
+	# like weather script
 	1) 
-		notify-send "Synchronizing package databases..." && yay -Sy > /dev/null 2>&1 && package=`yay -Qu | wc -l` && sigdwmblocks 9;;
+		notify-send "Synchronizing package databases..." && "st" -e "yay" "-Sy" && package=`yay -Qu | wc -l` && sigdwmblocks 9;;
+		# notify-send "Synchronizing package databases..." && "st" -e "yay" "-Sy" && package=`yay -Qu | wc -l` && sigdwmblocks 9;;
 	2)  ;;
 	3) "st" -e "nvim" "$0";;
 esac
