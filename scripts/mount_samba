@@ -19,12 +19,14 @@ folderMount() {
 	pointStr=$(eval "echo $point")
 	if [[ -f $pointStr ]]; then
 		echo -e "mount point exists\n"
-		echo $point
-		sudo mount.cifs -o user=$user,pass=$pass,port=$port //$path $pointStr
+		echo $samba_point
+		sudo mount.cifs -o user=$samba_username,pass=$samba_password,port=$samba_port //$samba_path $samba_point
 	else
 		echo -e "mount point does not exist\n"
-		echo $point
-		mkdir -p $point && sudo mount.cifs -o user=$user,pass=$pass,port=$port //$path $pointStr
+		echo $samba_point
+		mkdir -p $samba_port
+		echo "mount.cifs -o user=$samba_username,pass=$samba_password,port=$samba_port //$samba_path $samba_point"
+		sudo mount.cifs -o user=$samba_username,pass=$samba_password,port=$samba_port //$samba_path $samba_point
 	fi
 }
 
@@ -51,16 +53,20 @@ configInit() {
 }
 
 # Load configuration files
+# method 1 use source command
+# method 2 actual read it
 configLoad() {
-	cat $configName | while read line
-	do
-		echo $line
-	done
+	# cat $configName | while read line
+	# do
+	#     echo $line
+	# done
+	source $configName
 }
 
 # sambaPrompt
 # folderMount
 configInit
 configLoad
+folderMount
 
 #cd $point
