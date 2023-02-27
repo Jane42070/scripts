@@ -1,11 +1,22 @@
 #!/bin/sh
-package=`yay -Qu | wc -l`
 case $1 in
 	# like weather script
-	1) 
-		notify-send "Synchronizing package databases..." && "st" -e "yay" "-Sy" && package=`yay -Qu | wc -l` && sigdwmblocks 9;;
-		# notify-send "Synchronizing package databases..." && "st" -e "yay" "-Sy" && package=`yay -Qu | wc -l` && sigdwmblocks 9;;
-	2)  ;;
+	1)
+		# if [[ ! -e "/tmp/packages" ]]; then
+		#     yay -Sy > /dev/null 1&>2 && yay -Qu > /tmp/packages;;
+		# fi
+		st -i -g 125x30 -e "bat" "--style=plain" "/tmp/packages";;
+	2)
+		notify-send "Synchronizing package databases..."
+		yay -Sy > /dev/null && yay -Qu > /tmp/packages;;
 	3) "st" -e "nvim" "$0";;
+	4) notify-send "Synchronizing package databases..." && yay -Sy && yay -Qu > /tmp/packages && sigdwmblocks 9;;
 esac
+[ "$1" != "" ] && exit
+if [[ ! -e "/tmp/packages" ]]; then
+	notify-send "Synchronizing package databases..."
+	yay -Sy > /dev/null
+	yay -Qu > /tmp/packages
+fi
+package=`cat /tmp/packages| wc -l`
 echo 📦$package
