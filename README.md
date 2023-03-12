@@ -8,3 +8,4 @@
 - 或者将他们复制到bin目录下
 ## TODO
 - setup 脚本里添加符合我使用习惯的 Arch Based Distro 一键式脚本
+- 使用 Makefile 或 shell 进行安装

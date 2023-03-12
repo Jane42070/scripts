@@ -7,11 +7,11 @@ logName="$configPath/mountsamba.log"
 # Read necessary values for mount.cifs mounting
 sambaPrompt() {
 	echo -e "Mount cifs samba shell script\nPlease run as root...\n"
-	read -p "input username:" user
-	read -p "input password:" pass
-	read -p "input port:" port
-	read -p "input path+folder (eg. web/folder):" path
-	read -p "input mount point:" point
+	read -p "input username:" samba_username
+	read -p "input password:" samba_password
+	read -p "input port:" samba_port
+	read -p "input path+folder (eg. web/folder):" samba_path
+	read -p "input mount point:" samba_point
 }
 
 # Mount samba disk
@@ -24,8 +24,7 @@ folderMount() {
 	else
 		echo -e "mount point does not exist\n"
 		echo $samba_point
-		mkdir -p $samba_port
-		echo "mount.cifs -o user=$samba_username,pass=$samba_password,port=$samba_port //$samba_path $samba_point"
+		# echo "mount.cifs -o user=$samba_username,pass=$samba_password,port=$samba_port //$samba_path $samba_point"
 		sudo mount.cifs -o user=$samba_username,pass=$samba_password,port=$samba_port //$samba_path $samba_point
 	fi
 }
@@ -63,10 +62,22 @@ configLoad() {
 	source $configName
 }
 
-# sambaPrompt
-# folderMount
-configInit
-configLoad
-folderMount
+action_choose() {
+	choose="1"
+	while [[ $choose != "q" ]]; do
+		read -p "Using input or config?(1/0/q) default 1:" choose
+		if [[ $choose == "1" ]]; then
+			sambaPrompt
+			folderMount
+			break
+		elif [[ $choose == "0" ]]; then
+			configInit
+			configLoad
+			folderMount
+			break
+		fi
+	done
+}
 
-#cd $point
+action_choose
+

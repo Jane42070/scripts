@@ -1,0 +1,14 @@
+#!/bin/sh
+# echo -e "Shutdown\nReboot" | dmenu -p "shutdown or reboot?"
+# [ $(echo -e "$2\n$3\n$4" | dmenu -p "$1") == $2 ] && $4 && exit 0
+# $5
+choose=$(echo -e "$2\n$3\n$4" | dmenu -p "$1")
+if [[ $choose == $2 ]]; then
+	$5
+elif [[ $choose == $3 ]]; then
+	$6
+elif [[ $choose == $4 ]]; then
+	$7
+else
+	notify-send "Unknown option"
+fi
