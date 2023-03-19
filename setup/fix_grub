@@ -1,0 +1,20 @@
+#!/bin/sh
+# hidpi in grub menu
+echo """
+GRUB_FONT="/usr/share/grub/ter-u32n.pf2"
+""" >> /etc/default/grub
+
+# custom efi menuentry add
+echo
+"""
+menuentry "OpenCore" {
+	insmod part_gpt
+	insmod search_fs_uuid
+	insmod chain
+	search --fs-uuid --no-floppy --set=root C963-F8A1
+	# search --no-floppy --set=root --file /.efi
+	chainloader ($root)/EFI/OC/OpenCore.efi
+}
+""" >> /etc/grub.d/40_custom
+
+# run update-grub
