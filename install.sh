@@ -1,2 +1,2 @@
 #!/bin/sh
-cp -rv ./scripts/*  $HOME/.scripts/
+cp -rv ./scripts/*  $HOME/.local/bin/
